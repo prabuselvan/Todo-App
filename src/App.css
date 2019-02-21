@@ -1,33 +1,40 @@
-.App {
-  text-align: center;
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.container {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding: 50px;
+}    
+
+
+.error{
+  color: red;
 }
 
-.App-link {
-  color: #61dafb;
+.Todolist-items{
+  width: 67%;
+  margin-left: 277px;
+}
+/* .fa-edit, .fa-trash{
+float: right;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fa-trash {
+  margin-right: 20px;
+} */
+
+.icons{
+  float: right;
+}
+
+.fa-edit{
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.fa-trash {
+  cursor: pointer;
 }
