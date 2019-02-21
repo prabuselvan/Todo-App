@@ -15,10 +15,14 @@ class TodoList extends React.Component {
     }
 
     render () {
+    
+        const {length: count} = this.props.tasks;
+        if (count===0) return <p className='alert alert-danger'> There are no Tasks present in the list </p>
         return (
                 <div className='Todolist-items'>
+                 {this.props.success ? <div className='alert alert-success'> Successfully Added  </div>: null}
+                <h2> Task Lists</h2> <span className='badge badge-warning m-2 p-2'> {count} </span> <span> items in the List</span>
 
-                    
                 <ul className='list-group'>
                     {this.props.tasks.map((task,index)=> {
                         // console.log(task)

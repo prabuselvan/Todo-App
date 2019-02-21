@@ -7,7 +7,8 @@ class TodoForm extends React.Component{
        
         this.state = {
             taskName :'',
-            editTaskName: ''
+            editTaskName: '',
+       
         }
     }
 
@@ -32,6 +33,7 @@ class TodoForm extends React.Component{
         const {taskName} = this.state;
         console.log('TaskName in onAddTask ', taskName);
         this.props.onAddTask(taskName);
+    
     }
 
     editTask=(e)=> {
@@ -41,19 +43,25 @@ class TodoForm extends React.Component{
         this.props.onEditSave(editTaskName);
     }
 
+    
     render( ) {
+      
+        const {success} = this.props;
         return (
             <div className='container'>
+            <h2> Add Task </h2>
               <p> {this.props.isEdit} </p>
                         <form className='form-group' onSubmit={this.onAddTask}>
                         <div>
                             <label> Task Name</label>
                             <input type='text' className='form-control' placeholder='TaskName' value={this.state.taskName} onChange={this.onHandleChange}/>
                         </div> <br/>
-                        {this.props.isError ? <div className='error'> {this.props.errorMsg}</div> : null}
+                        {this.props.isError ? <div className='alert alert-danger'> {this.props.errorMsg}</div> : null}
                         <div>
-                            <button className='btn btn-primary'> Add  Item </button>
+                            <button className='btn btn-primary' disabled={this.state.taskName.length>0  ? false : true}> Add  Item </button>
                         </div>
+                        {this.props.success}
+                        {this.props.success ? <div className='alert alert-success'> Successfully Added  </div>: null}
 
                         </form>
                 

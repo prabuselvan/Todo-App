@@ -38,3 +38,6 @@ float: right;
 .fa-trash {
   cursor: pointer;
 }
+.alert-danger{
+  text-align: center;
+}

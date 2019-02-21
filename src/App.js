@@ -13,7 +13,8 @@ class App extends Component {
    errorMsg: '',
    isEdit: false,
    editTaskName :'',
-   index :0
+   index :0,
+   success: false
  }
 
  onAddTask=(newTask)=> {
@@ -24,6 +25,7 @@ class App extends Component {
     if (!tasks.includes(newTask)) {
       this.setState ({
         tasks: [...tasks,newTask],
+        success: true
       })
     } else {
       this.setState ( {
@@ -51,6 +53,7 @@ class App extends Component {
  }
 
  onEditEvent=(task, index)=> {
+   console.log(task , ' -- ', index);
    this.setState ( {
      isEdit: true,
      editTaskName:task,
@@ -61,23 +64,26 @@ class App extends Component {
 
  onEditTask=(newTask)=> {
    console.log('newTask ', newTask);
- const { index}= this.state;
-
- let tasks =[this.state.tasks];
- console.log(tasks);
- tasks[index]=newTask;
-// console.log(tasks);
-this.setState({
-  tasks: tasks
-})
-
-console.log(this.state.tasks);
-
- }
+   const { index}= this.state;
+  let tasks =[...this.state.tasks];
+  console.log(tasks);
+  tasks[index]=newTask;
+    this.setState({
+      tasks: tasks,
+      isEdit: false
+    });
+  console.log(this.state.tasks);
+}
+onCancel=()=> {
+  this.setState ( {
+    isEdit : !this.state.isEdit
+  });
+}
   
   render() {
     return (
       <div >
+          <h1 style={{textAlign: "center"}}> Welcome to To do App</h1>
 
         {!this.state.isEdit  ? 
           <TodoForm
@@ -88,12 +94,15 @@ console.log(this.state.tasks);
         
             />
         :   <TodoEdit editTaskName={this.state.editTaskName}
-                      onEditTask={this.onEditTask}/> }
+                      onEditTask={this.onEditTask}
+                      onCancel={this.onCancel}
+                   /> }
      
           <TodoList 
             tasks={this.state.tasks} 
             onDeleteEvent={this.onDeleteEvent} 
-            onEditEvent={this.onEditEvent}/>
+            onEditEvent={this.onEditEvent}
+            success={this.state.success}/>
       </div>
     );
   }
